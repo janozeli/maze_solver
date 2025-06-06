@@ -31,3 +31,15 @@ class Cell:
 
         if self.has_bottom_wall:
             self.__win.draw_line(Line(Point(x1, y2), Point(x2, y2)))
+
+    def draw_move(self, to_cell, undo=False):
+        x_mean = (self.__x1 + self.__x2) / 2
+        y_mean = (self.__y1 + self.__y2) / 2
+        center_point = Point(x_mean, y_mean)
+
+        other_x_mean = (to_cell.__x1 + to_cell.__x2) / 2
+        other_y_mean = (to_cell.__y1 + to_cell.__y2) / 2
+        other_center_point = Point(other_x_mean, other_y_mean)
+
+        color = "gray" if undo else "red"
+        self.__win.draw_line(Line(center_point, other_center_point), color)
